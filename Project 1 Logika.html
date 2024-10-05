@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <header>
+        <div class="header_left">
+            <h1>Ева Валли</h1>
+            <div class="bio">
+                <p>Зроблено по приколу</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+        <div class="header_right">
+            <div class="header_btn">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+    <section>
+    <div class="container">
+        <h1>Рандомні факти про тварин</h1>
+        <select id="animal-select">
+            <option value="cat">Кіт</option>
+            <option value="dog">Собака</option>
+            <option value="fox">Лис</option>
+        </select>
+        <button id="generate-fact">Отримати факт</button>
+        <p id="fact-display">Натисни, щоб отримати рандомний факт</p>
+    </div>
+    </section>
+    <section>
+    <div id = "password_generator">
+            <h2>Password generator</h2>
+        <label>Довжина пароля:</label>
+        <input type="number" id="length" min="4" max="20" value="12">
+        <br>
+        <input type="checkbox" id="upper" checked> Великі літери</label>
+        <br>
+        <label><input type="checkbox" id="lower" checked> Малі літери</label>
+        <br>
+        <label><input type="checkbox" id="numbers" checked> Цифри</label>
+        <br>
+        <label><input type="checkbox" id="symbols" checked> Спеціальні символи</label>
+        <br>
+        <button onclick="generatePassword()">Згенерувати пароль</button>
+        <h3 id="result"></h3>
+   </div>
+    </section>
+    <footer>
+        <section class="contacts">
+            <h1>Контакти</h1>
+            <div class="section_row">
+                <div class="section_item">
+                    <img src ="Instagram_icon.png.webp" >
+                </div>
+                <div class="section_item">
+                    <img src="tg_logo.svg" alt="">
+                </div>
+                <div class="section_item">
+                    <img src="email_logo.png" alt="">
+                </div>
+            </div>
+        </section>
+        <div class="footer_content">
+            Створено мною в 2024 | Logika
+        </div>
+    </footer>
+</body>
+</html>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    height: 100vh;
+    background: url(header_bg.webp);
+    background-size: cover;
+    display: flex;
+}
+
+.header_left {
+    width: 65%;
+    height: 100%;
+    font-size: 3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 5vw;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.header_left p {
+    font-size: 0.5em;
+}
+
+.bio {
+    width: 60%;
+}
+
+
+.header_right {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10vw;
+}
+
+.header_btn {
+    cursor: pointer;
+}
+
+.header_btn:hover {
+    transform: scale(1.05);
+}
+
+main {
+    width: 100%;
+    height: auto;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 6vw;
+    box-sizing: border-box;
+    min-height: 50vh;
+}
+
+section h1 {
+    font-size: 4em;
+}
+
+.section_row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section_item {
+    height: 10vw;
+    margin: 0 4em 4em 4em;
+}
+
+.section_item img {
+    height: 100%;
+}
+
+
+.projects {
+    color: white;
+    background: black;
+}
+
+.github:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+footer {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    background-image: url(footer_bg.png);
+    background-size: cover;
+    background-position: center;
+}
+
+
+.footer_content {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: brightness(50%);
+    -webkit-backdrop-filter: brightness(50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+</style>
+<script>
+        function generatePassword() {
+        const length = document.getElementById('length').value;
+        const includeUpper = document.getElementById('upper').checked;
+        const includeLower = document.getElementById('lower').checked;
+        const includeNumbers = document.getElementById('numbers').checked;
+        const includeSymbols = document.getElementById('symbols').checked;
+
+        var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var lower = "abcdefghijklmnopqrstuvwxyz";
+        var numbers = "1234567890";
+        var symbols = "!@#$%^&*()*+-./";
+
+        let all = ""
+        if (includeUpper) all += upper;
+        if (includeLower) all += lower;
+        if (includeNumbers) all += numbers
+        if (includeSymbols) all += symbols;
+
+        let password = '';
+        for (let i = 0; i < length; i++){
+            var random = Math.floor(Math.random() * all.length);
+            password += all[random]
+        }
+        document.getElementById("result").innerHTML = `Згенерований пароль: ${password}`;
+    }
+    const button = document.getElementById('generate-fact');
+    const factDisplay = document.getElementById('fact-display');
+    const animalSelect = document.getElementById('animal-select');
+    async function fetchRandomFact() {
+        const animal = animalSelect.value;
+        let url;
+        if (animal === 'cat') {
+            url = "https://meowfacts.herokuapp.com/";
+        } else if (animal === 'dog') {
+            url = "https://dog-api.kinduff.com/api/facts";
+        } else if (animal === 'fox') {
+            url = "https://randomfox.ca/floof/"; 
+        }
+        let response = await fetch(url);
+        let data = await response.json();
+        if (animal === 'cat' || animal === 'dog') {
+            return data.facts ? data.facts[0] : data.data[0];
+        } else if (animal === 'fox') {
+            return 'Ось фото лисиці: ' + data.image;
+        }
+    }
+    
+    button.addEventListener('click', async () => {
+        const fact = await fetchRandomFact();
+        factDisplay.textContent = fact;
+    });
+</script>
